@@ -29,6 +29,8 @@ type EditDef struct {
 	labelSize       unit.Sp
 	borderThickness unit.Dp
 	wasFocused      bool
+	minHeight       int
+	maxHeight       int
 }
 
 // Edit will return a widget (layout function) for a text editor
@@ -95,6 +97,15 @@ func (e *EditDef) Layout(gtx C) D {
 	if w := gtx.Dp(e.width); w > gtx.Constraints.Min.X && w < gtx.Constraints.Max.X {
 		gtx.Constraints.Min.X = w
 	}
+
+	// If a height is given, limit size
+	if e.minHeight > 0 {
+		gtx.Constraints.Min.Y = e.minHeight
+	}
+	if e.maxHeight > 0 {
+		gtx.Constraints.Max.Y = e.maxHeight
+	}
+
 	// And reduce the size to make space for the padding
 	gtx.Constraints.Min.X -= gtx.Dp(e.padding.Left + e.padding.Right + e.th.InsidePadding.Left + e.th.InsidePadding.Right)
 	gtx.Constraints.Max.X = gtx.Constraints.Min.X
@@ -203,6 +214,23 @@ type EditOption func(w *EditDef)
 func Var(s *string) EditOption {
 	return func(w *EditDef) {
 		w.value = s
+	}
+}
+
+// Area is an option parameter to set the minimum and maximum height of the edit
+// area and allow multi-line editing.
+func Area(min, max int) EditOption {
+	return func(w *EditDef) {
+		w.SingleLine = false
+		w.minHeight = min
+		w.maxHeight = max
+	}
+}
+
+// ReadOnly is an option parameter to set the edit to read-only
+func ReadOnly() EditOption {
+	return func(w *EditDef) {
+		w.ReadOnly = true
 	}
 }
 
