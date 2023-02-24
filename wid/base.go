@@ -3,11 +3,12 @@
 package wid
 
 import (
-	"golang.org/x/exp/constraints"
+	"context"
 	"image"
 	"image/color"
-	"os"
 	"sync"
+
+	"golang.org/x/exp/constraints"
 
 	"gioui.org/op/paint"
 
@@ -361,13 +362,19 @@ func Invalidate() {
 }
 
 func Run(win *app.Window, form *layout.Widget, th *Theme) {
+	RunWithContext(context.Background(), win, form, th)
+}
+
+func RunWithContext(ctx context.Context, win *app.Window, form *layout.Widget, th *Theme) {
 	invalidate = make(chan struct{})
 	for {
 		select {
+		case <-ctx.Done():
+			return
 		case e := <-win.Events():
 			switch e := e.(type) {
 			case system.DestroyEvent:
-				os.Exit(0)
+				return
 			case system.FrameEvent:
 				var ops op.Ops
 				// Save window size for use by widgets. Must be done before drawing
