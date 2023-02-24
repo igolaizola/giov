@@ -104,6 +104,7 @@ func (e *EditDef) Layout(gtx C) D {
 		paint.ColorOp{Color: e.Fg()}.Add(gtx.Ops)
 		ctx := gtx
 		ctx.Constraints.Max.X = gtx.Sp(e.labelSize)
+		ctx.Constraints.Min.X = gtx.Sp(e.labelSize) - gtx.Dp(e.th.InsidePadding.Right)
 		_ = widget.Label{Alignment: text.End, MaxLines: 1}.Layout(ctx, e.th.Shaper, *e.Font, e.th.TextSize, e.label)
 		o.Pop()
 		ofs := gtx.Sp(e.labelSize) + gtx.Dp(e.th.InsidePadding.Left)

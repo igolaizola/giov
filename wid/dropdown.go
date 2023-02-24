@@ -98,6 +98,7 @@ func (b *DropDownStyle) Layout(gtx C) D {
 		paint.ColorOp{Color: b.Fg()}.Add(gtx.Ops)
 		ctx := gtx
 		ctx.Constraints.Max.X = gtx.Sp(b.labelSize)
+		ctx.Constraints.Min.X = gtx.Sp(b.labelSize) - gtx.Dp(b.th.InsidePadding.Right)
 		_ = widget.Label{Alignment: text.End, MaxLines: 1}.Layout(ctx, b.th.Shaper, *b.Font, b.th.TextSize, b.label)
 		o.Pop()
 		ofs := gtx.Sp(b.labelSize) + gtx.Dp(b.th.InsidePadding.Left)
