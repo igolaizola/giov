@@ -41,7 +41,7 @@ type Tooltip struct {
 	TooltipRR unit.Dp
 	TextSize  unit.Sp
 	init      bool
-	shaper    text.Shaper
+	shaper    *text.Shaper
 	font      text.Font
 }
 

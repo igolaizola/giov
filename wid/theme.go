@@ -220,7 +220,7 @@ type Pallet struct {
 type Theme struct {
 	Pallet
 	DarkMode            bool
-	Shaper              text.Shaper
+	Shaper              *text.Shaper
 	TextSize            unit.Sp
 	DefaultFont         text.Font
 	CheckBoxChecked     *Icon
@@ -303,7 +303,7 @@ func NewTheme(fontCollection []text.FontFace, fontSize unit.Sp, colors ...color.
 		t.ErrorColor = colors[3]
 	}
 
-	t.Shaper = text.NewCache(fontCollection)
+	t.Shaper = text.NewShaper(fontCollection)
 	t.TextSize = fontSize
 	v := unit.Dp(t.TextSize) / 10
 	// Icons
