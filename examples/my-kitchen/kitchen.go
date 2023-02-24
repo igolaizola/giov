@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gio-v/wid"
+	"github.com/igolaizola/giov/wid"
 	"image"
 	"image/color"
 	"time"

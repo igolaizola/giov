@@ -3,7 +3,7 @@
 package main
 
 import (
-	"gio-v/wid"
+	"github.com/igolaizola/giov/wid"
 
 	"gioui.org/app"
 	"gioui.org/font/gofont"

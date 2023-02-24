@@ -7,15 +7,14 @@ package main
 // gio-v is maintained by Jan Kåre Vatne (jkvatne@online.no)
 
 import (
-	"gio-v/wid"
 	"image/color"
-
-	"golang.org/x/exp/shiny/materialdesign/icons"
 
 	"gioui.org/app"
 	"gioui.org/font/gofont"
 	"gioui.org/layout"
 	"gioui.org/unit"
+	"github.com/igolaizola/giov/wid"
+	"golang.org/x/exp/shiny/materialdesign/icons"
 )
 
 var (

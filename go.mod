@@ -1,4 +1,4 @@
-module gio-v
+module github.com/igolaizola/giov
 
 go 1.19
 

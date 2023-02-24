@@ -55,7 +55,7 @@ Otherwise, default fallbacks are used. The defaults are mostly defined in the th
 package main
 
 import (
-	"gio-v/wid"
+	"github.com/igolaizola/giov/wid"
 
 	"gioui.org/app"
 	"gioui.org/font/gofont"
